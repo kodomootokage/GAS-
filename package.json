@@ -1,0 +1,43 @@
+{
+  "name": "backlog-gas-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack && npm run test",
+    "push": "npm run build && clasp push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/google-apps-script": "0.0.27",
+    "@types/jest": "^23.3.1",
+    "gas-webpack-plugin": "^0.3.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.5.0",
+    "ts-jest": "^23.1.4",
+    "ts-loader": "^4.5.0",
+    "typescript": "^3.0.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  },
+    "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(src/.+(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script>
+      // Prevent forms from submitting.
+      function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+      window.addEventListener('load', preventFormSubmit);
+
+      function onSuccess(result) {
+        google.script.host.close();
+      }
+
+      function onFailure(e) {
+        alert([e.message, e.stack]);
+      }
+
+      function handleFormSubmit(formObject) {
+        google.script.run
+          .withSuccessHandler(onSuccess)
+          .withFailureHandler(onFailure)
+          .getIssuList(formObject);
+      }
+    </script>
+    <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    fieldset {
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+    fieldset p {
+      margin-top: 4px;
+    }
+    label {
+      /* display: block; */
+      font-size: .8rem;
+      margin-bottom: 6px;
+    }
+    input[type="text"] {
+      outline: none;
+      /* width: 100%; */
+      border: solid 1px #ccc;
+      border-radius: 4px;
+      padding: 4px 7px;
+      font-size: 1rem;
+    }
+    input[type="text"]:focus {
+      border-color: #4d90fe;
+    }
+    .button {
+      outline: none;
+      min-width: 120px;
+      margin: 0 auto;
+      color: white;
+      background-color: #4285f4;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.3;
+      display: inline-block;
+      padding: 6px 10px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      border: 0 none;
+      border-radius: 6px;
+      transition: background-color .1s 0s linear,border-color .1s 0s linear;
+      border: 2px solid #4285f4;
+    }
+    .button:hover {
+      background-color: #2569d4;
+      border-color: #2569d4;
+    }
+    .button:focus {
+      border-color: #0949b5;
+    }
+    .button-area {
+      margin-top: 20px;
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <? var config = getConfig(); ?>
+    <form id="myForm" onsubmit="handleFormSubmit(this)">
+      <fieldset>
+        <p>
+          <label for="url">Backlog URL</label> 
+          <label class="control-label col-xs-3">https:// </label> 
+          <input id="space" type="text" name="space" value="<?= config.space ?>" tabindex="1" /> 
+          <label class="control-label col-xs-3">.backlog </label> 
+          <input id="domain" type="text" name="domain" value="<?= config.domain ?>" tabindex="2" /> 
+          <!-- <select id="domain"> ★TODO 書き方がわからん
+            <option value="<?= config.domain ?>" selected>.com</option>
+            <option value="<?= config.domain ?>">.jp</option>
+          </select>  -->
+        </p>
+        <p>
+          <label for="apiKey">Backlog API key</label>
+          <input id="apiKey" type="text" style="width:100%" name="apiKey" value="<?= config.apiKey ?>" tabindex="3" />
+        </p>
+        <p>
+          <label for="projectKey">Backlog project key</label>
+          <input id="projectKey" type="text" name="projectKey" value="<?= config.projectKey ?>" tabindex="4" />
+        </p>
+        <!-- <p>
+          <label for="mailaddress">Mail Address</label>
+          <input id="mailaddress" type="text" style="width:100%" name="mailaddress" value="<?= config.mailaddress ?>" tabindex="5" />
+        </p> -->
+        <!-- <p> ★TODO 書き方がわからん
+          <label for="cksendmail">Excel形式でメールを送付する</label>
+          <input type="checkbox" name="cksendmail" value="<?= config.cksendmail ?>" tabindex="6" />送る
+        </p> -->
+        <div class="button-area">
+          <input type="submit" class="button" value="実行" tabindex="7" />
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
