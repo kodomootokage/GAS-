@@ -46,5 +46,12 @@ void(
     readonly cksendmail: string
   }
 
-  const Config = (url: string, space: string, domain: string, apiKey: string, projectKey: string, mailaddress: string, cksendmail: string) => 
+  const Config = (
+      url: string, 
+      space: string, 
+      domain: string, 
+      apiKey: string, 
+      projectKey: string, 
+      mailaddress: string, 
+      cksendmail: string) => 
   ({url, space, domain, apiKey, projectKey, mailaddress, cksendmail})

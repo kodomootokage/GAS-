@@ -106,54 +106,12 @@ function sendMail(config: iConfig) {
 
 function errorCheck() {
   var error = true;
-
-  // //projectkey
-  // var url2 =
-  //   'https://' +
-  //   グローバル変数.space_id +
-  //   '.backlog.com/api/v2/projects/' +
-  //   グローバル変数.project_id +
-  //   '?apiKey=' +
-  //   グローバル変数.api_key;
-  // var response = UrlFetchApp.fetch(url2);
-  // if (response.getResponseCode() != 200) {
-  //   return false;
-  // }
-
-  // //取得
-  // var project = JSON.parse(response.getContentText());
-  // if (project[CONST.Field_id] == グローバル変数.project_id) {
-  //   if (project[CONST.Field_projectKey] == グローバル変数.project_key) {
-  //     Browser.msgBox(messages.error.project_key);
-  //     error = false;
-  //   }
-  // }
-
   if (error == true) {
     return false;
   } else {
     return true;
   }
 }
-
-// function getcustomFields() {
-//   var spaceId = UserProperties.getProperty('spaceId');
-//   var apiKey = UserProperties.getProperty('apiKey');
-//   var projectId = UserProperties.getProperty('projectId');
-//   var projectKey = UserProperties.getProperty('projectKey');
-
-//   var url =
-//     'https://' +
-//     spaceId +
-//     '.backlog.com/api/v2/projects/' +
-//     projectId +
-//     '/customFields?apiKey=' +
-//     apiKey;
-
-//   var response = UrlFetchApp.fetch(url);
-//   var customFields = JSON.parse(response.getContentText());
-// }
-
 
 //itemNameによってColを指定する
 function getCol(itemName){
@@ -433,64 +391,3 @@ function getColCommon(itemName) {
     return グローバル変数.colArray.indexOf(itemName);
   }
 }
-
-// function findRow(sheet, val, col) {
-//   var dat = sheet.getDataRange().getValues(); //受け取ったシートのデータを二次元配列に取得
-
-//   for (var i = 1; i < dat.length; i++) {
-//     if (dat[i][col - 1] === val) {
-//       return i + 1;
-//     }
-//   }
-//   return 0;
-// }
-
-// //. パラメータ入力用のダイアログを表示
-// function openGUI() {
-//   var html = HtmlService.createHtmlOutputFromFile('UserProperties');
-//   SpreadsheetApp.getUi().showModalDialog(html, ' ');
-// }
-
-// var UserProperties = PropertiesService.getUserProperties();
-
-// function set_UserProperties(spaceId, apiKey, projectId, projectKey) {
-//   UserProperties.setProperties({
-//     spaceId: spaceId,
-//     apiKey: apiKey,
-//     projectId: projectId,
-//     projectKey: projectKey
-//   });
-
-//   グローバル変数.space_id = spaceId;
-//   グローバル変数.api_key = apiKey;
-//   グローバル変数.project_id = projectId;
-//   グローバル変数.project_key = projectKey;
-
-//   グローバル変数.url1 =
-//     'https://' +
-//     グローバル変数.space_id +
-//     '.backlog.com/api/v2/issues?apiKey=' +
-//     グローバル変数.api_key +
-//     '&projectId[]=' +
-//     グローバル変数.project_id;
-
-//   FromBacklog();
-// }
-
-// function get_UserProperties() {
-//   var spaceId = UserProperties.getProperty('spaceId');
-//   var apiKey = UserProperties.getProperty('apiKey');
-//   var projectId = UserProperties.getProperty('projectId');
-//   var projectKey = UserProperties.getProperty('projectKey');
-//   UserProperties.setProperties({
-//     spaceId: spaceId,
-//     apiKey: apiKey,
-//     projectId: projectId,
-//     projectKey: projectKey
-//   });
-
-//   // UserPropertiesのまま渡す方法がわからず ★TODO★
-//   var data = { UserProperties: [spaceId, apiKey, projectId, projectKey] };
-
-//   return data;
-// }
