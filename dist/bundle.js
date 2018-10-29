@@ -942,17 +942,17 @@ var FromBacklog = function () { return ({
         var totalCount = issue_list.count;
         var row = _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].STARTROW;
         for (var cnt in issue_list) {
-            if (issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId] == null) {
+            if (issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId] === null) {
                 ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].flgChild = false;
             }
             else {
                 ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].flgChild = true;
             }
             for (var itemName in issue_list[cnt]) {
-                if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_customFields) {
+                if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_customFields) {
                     var obj = issue_list[cnt][itemName];
                     for (var exCnt in obj)
-                        if (obj[exCnt].name == '') {
+                        if (obj[exCnt].name === '') {
                         }
                         else {
                             var value = getValuecustomFields(issue_list, cnt, exCnt, obj[exCnt].name);
@@ -973,7 +973,7 @@ var FromBacklog = function () { return ({
             row++;
         }
         Browser.msgBox(_messages__WEBPACK_IMPORTED_MODULE_1__["messages"].common.end);
-        // if (config.cksendmail == ""){
+        // if (config.cksendmail === ""){
         //   sendMail(config)
         // }
     }
@@ -1006,136 +1006,124 @@ function sendMail(config) {
 }
 function errorCheck() {
     var error = true;
-    // //projectkey
-    // var url2 =
-    //   'https://' +
-    //   グローバル変数.space_id +
-    //   '.backlog.com/api/v2/projects/' +
-    //   グローバル変数.project_id +
-    //   '?apiKey=' +
-    //   グローバル変数.api_key;
-    // var response = UrlFetchApp.fetch(url2);
-    // if (response.getResponseCode() != 200) {
-    //   return false;
-    // }
-    // //取得
-    // var project = JSON.parse(response.getContentText());
-    // if (project[CONST.Field_id] == グローバル変数.project_id) {
-    //   if (project[CONST.Field_projectKey] == グローバル変数.project_key) {
-    //     Browser.msgBox(messages.error.project_key);
-    //     error = false;
-    //   }
-    // }
-    if (error == true) {
+    if (error === true) {
         return false;
     }
     else {
         return true;
     }
 }
-// function getcustomFields() {
-//   var spaceId = UserProperties.getProperty('spaceId');
-//   var apiKey = UserProperties.getProperty('apiKey');
-//   var projectId = UserProperties.getProperty('projectId');
-//   var projectKey = UserProperties.getProperty('projectKey');
-//   var url =
-//     'https://' +
-//     spaceId +
-//     '.backlog.com/api/v2/projects/' +
-//     projectId +
-//     '/customFields?apiKey=' +
-//     apiKey;
-//   var response = UrlFetchApp.fetch(url);
-//   var customFields = JSON.parse(response.getContentText());
-// }
 //itemNameによってColを指定する
 function getCol(itemName) {
-    if (itemName == '') {
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId) {
-        if (___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].flgChild == false) {
-            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_課題番号);
-        }
-        else {
-        }
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_issueKey) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_課題キー);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_status) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_状態);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_createdUser) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_起票者);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_summary) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_内容);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_priority) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_優先度);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_startDate) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_回答日);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_assignee) {
-        return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_回答者);
-    }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_description) {
-        if (___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].flgChild == false) {
-            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_原因_回答_補足);
-        }
-        else {
-            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_対策_補足);
-        }
-    }
-    else {
-        return getColCommon(itemName);
+    switch (itemName) {
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId:
+            if (___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].flgChild === false) {
+                return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_課題番号);
+            }
+            else {
+                break;
+            }
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_issueKey:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_課題キー);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_status:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_状態);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_createdUser:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_起票者);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_summary:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_内容);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_priority:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_優先度);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_startDate:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_回答日);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_assignee:
+            return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_回答者);
+        case _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_description:
+            if (___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].flgChild === false) {
+                return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_原因_回答_補足);
+            }
+            else {
+                return getColCommon(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_対策_補足);
+            }
+        default:
+            return getColCommon(itemName);
     }
 }
+// //itemNameによってColを指定する
+// function getCol(itemName){
+//   if (itemName === '') {
+//   } else if (itemName === CONST.Field_parentIssueId) {
+//     if (グローバル変数.flgChild === false) {
+//       return getColCommon(CONST.ExcelField_課題番号);
+//     } else {
+//     }
+//   } else if (itemName === CONST.Field_issueKey) {
+//     return getColCommon(CONST.ExcelField_課題キー);
+//   } else if (itemName === CONST.Field_status) {
+//     return getColCommon(CONST.ExcelField_状態);
+//   } else if (itemName === CONST.Field_createdUser) {
+//     return getColCommon(CONST.ExcelField_起票者);
+//   } else if (itemName === CONST.Field_summary) {
+//     return getColCommon(CONST.ExcelField_内容);
+//   } else if (itemName === CONST.Field_priority) {
+//     return getColCommon(CONST.ExcelField_優先度);
+//   } else if (itemName === CONST.Field_startDate) {
+//     return getColCommon(CONST.ExcelField_回答日);
+//   } else if (itemName === CONST.Field_assignee) {
+//     return getColCommon(CONST.ExcelField_回答者);
+//   } else if (itemName === CONST.Field_description) {
+//     if (グローバル変数.flgChild === false) {
+//       return getColCommon(CONST.ExcelField_原因_回答_補足);
+//     } else {
+//       return getColCommon(CONST.ExcelField_対策_補足);
+//     }
+//   } else {
+//     return getColCommon(itemName);
+//   }
+// }
 //objによってvalueを指定する
 function getValue(issue_list, cnt, itemName) {
     var obj = issue_list[cnt][itemName];
-    if (itemName == '') {
+    if (itemName === '') {
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_priority) {
-        if (obj.id == '2') {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_priority) {
+        if (obj.id === '2') {
             return '高';
         }
-        else if (obj.id == '3') {
+        else if (obj.id === '3') {
             return '中';
         }
         else {
             return '低';
         }
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_status) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_status) {
         return issue_list[cnt][itemName].name;
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId) {
-        if (issue_list[cnt][itemName] == null) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId) {
+        if (issue_list[cnt][itemName] === null) {
             return issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_id];
         }
         else {
             return issue_list[cnt][itemName];
         }
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_assignee) {
-        if (issue_list[cnt][itemName] == null) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_assignee) {
+        if (issue_list[cnt][itemName] === null) {
             return '';
         }
         else {
             return issue_list[cnt][itemName].name.split(' ')[0].split('　')[0];
         }
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_startDate) {
-        if (issue_list[cnt][itemName] == null) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_startDate) {
+        if (issue_list[cnt][itemName] === null) {
             return '';
         }
         else {
             return dateFormat(issue_list[cnt][itemName]);
         }
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_createdUser) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_createdUser) {
         return getValuecreatedUser(issue_list, cnt, itemName)
             .split(' ')[0]
             .split('　')[0];
@@ -1146,18 +1134,18 @@ function getValue(issue_list, cnt, itemName) {
 }
 //objによってColを指定する(customFields)
 function getColcustomFields(issue_list, cnt, itemName) {
-    if (itemName == '') {
+    if (itemName === '') {
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_発生日) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_発生日) {
         return getCol(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_発生日);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様起票者名) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様起票者名) {
         return getCol(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_起票者);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様担当者名) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様担当者名) {
         return getCol(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_回答者);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_機能名) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_機能名) {
         return getCol(_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].ExcelField_発生場所_機能);
     }
     else {
@@ -1167,22 +1155,22 @@ function getColcustomFields(issue_list, cnt, itemName) {
 //objによってvalueを指定する(customFields)
 function getValuecustomFields(issue_list, cnt, exCnt, itemName) {
     var obj = issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_customFields];
-    if (itemName == '') {
+    if (itemName === '') {
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_発生日) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_発生日) {
         ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].発生日Index = exCnt; //★TODO いまいち
         return getValuecustomFieldsEx(obj, exCnt, _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_DATE);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_リリース日) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_リリース日) {
         return getValuecustomFieldsEx(obj, exCnt, _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_DATE);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様起票者名) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様起票者名) {
         return getValuecustomFieldsEx(obj, exCnt, _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_NAME);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様担当者名) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_お客様担当者名) {
         return getValuecustomFieldsEx(obj, exCnt, _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_NAME);
     }
-    else if (itemName == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_機能名) {
+    else if (itemName === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].cField_機能名) {
         return getValuecustomFieldsEx(obj, exCnt, _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_NAME);
     }
     else {
@@ -1193,26 +1181,26 @@ function getValuecustomFields(issue_list, cnt, exCnt, itemName) {
 // var obj = issue_list[cnt][itemName]
 function getValuecustomFieldsEx(obj, exCnt, type) {
     var custom;
-    if (obj[exCnt].value == null) {
+    if (obj[exCnt].value === null) {
         return '';
     }
-    if (obj[exCnt] instanceof Array == false) {
+    if (obj[exCnt] instanceof Array === false) {
         custom = obj[exCnt].value;
     }
     else {
         custom = obj[exCnt].value[0];
     }
-    if (custom == undefined) {
+    if (custom === undefined) {
         return '';
     }
-    else if (custom == '') {
+    else if (custom === '') {
     }
     else {
-        if (type == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_DATE) {
+        if (type === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_DATE) {
             return dateFormat(custom);
         }
-        else if (type == _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_NAME) {
-            if (custom instanceof Array == false) {
+        else if (type === _CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].FORMAT_NAME) {
+            if (custom instanceof Array === false) {
                 return custom.name;
             }
             else {
@@ -1227,7 +1215,7 @@ function getValuecustomFieldsEx(obj, exCnt, type) {
 function getValuecreatedUser(issue_list, cnt, itemName) {
     var createdUser = issue_list[cnt][itemName];
     var name = createdUser.name;
-    if (name == '') {
+    if (name === '') {
     }
     else {
         return name;
@@ -1239,15 +1227,13 @@ function dateFormat(strDate) {
 }
 // コメントをIssueとして追加する
 function CreateIssueFromComment(issue_list, comment_list) {
-    var keyvalueList = {};
-    for (var key in issue_list) {
-        var keyvalue;
-        keyvalue.cnt = key;
-        keyvalue.issueKey = issue_list[key].issueKey;
-        keyvalueList[keyvalue.issueKey] = keyvalue;
+    var IssueKeyValueList = {};
+    for (var id in issue_list) {
+        var issueidkey = setissuekeyvalue(id, issue_list);
+        IssueKeyValueList[issueidkey.key] = issueidkey;
     }
     for (var cntcomment in comment_list) {
-        var issue = issue_list[keyvalueList[comment_list[cntcomment].issueKey].cnt];
+        var issue = issue_list[IssueKeyValueList[comment_list[cntcomment].issueKey].id];
         var copiedissue = JSON.parse(JSON.stringify(issue));
         copiedissue.issueKey = "";
         //      copiedissue.status.name = ""
@@ -1258,10 +1244,14 @@ function CreateIssueFromComment(issue_list, comment_list) {
         issue_list.push(copiedissue);
     }
 }
+function setissuekeyvalue(id, issue_list) {
+    return ({ id: id, key: issue_list[id].issueKey });
+}
+;
 // parentID配列を作成する
 function CreateParentArray(issue_list) {
     for (var cnt in issue_list) {
-        if (issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId] == null) {
+        if (issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_parentIssueId] === null) {
             ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].parentArray[issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_id]] = issue_list[cnt][_CONST__WEBPACK_IMPORTED_MODULE_0__["CONST"].Field_customFields][___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].発生日Index].value;
         }
     }
@@ -1272,7 +1262,7 @@ function CreateParentArray(issue_list) {
 function compare(a, b) {
     var pIdA = ('0000' + a.id).slice(-10);
     var pIdB = ('0000' + b.id).slice(-10);
-    if (a.parentIssueId == null) {
+    if (a.parentIssueId === null) {
         var pIsdA = pIdA;
         var p発生日A = a.customFields[___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].発生日Index].value;
     }
@@ -1280,7 +1270,7 @@ function compare(a, b) {
         var pIsdA = ('0000' + a.parentIssueId).slice(-10);
         var p発生日A = ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].parentArray[a.parentIssueId];
     }
-    if (b.parentIssueId == null) {
+    if (b.parentIssueId === null) {
         var pIsdB = pIdB;
         var p発生日B = b.customFields[___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].発生日Index].value;
     }
@@ -1288,10 +1278,10 @@ function compare(a, b) {
         var pIsdB = ('0000' + b.parentIssueId).slice(-10);
         var p発生日B = ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].parentArray[b.parentIssueId];
     }
-    if (p発生日A == null) {
+    if (p発生日A === null) {
         p発生日A = '0000-00-00000:00:000';
     }
-    if (p発生日B == null) {
+    if (p発生日B === null) {
         p発生日B = '0000-00-00000:00:000';
     }
     var r = 0;
@@ -1306,7 +1296,7 @@ function compare(a, b) {
 // ヘッダーより各項目に対応するColを取得する
 function setCol(colArray) {
     // 配列を99まで埋める
-    if (colArray.length == 0) {
+    if (colArray.length === 0) {
         for (var i = 1; i < 100; i++) {
             colArray.push('' + i);
         }
@@ -1341,63 +1331,13 @@ function setCol(colArray) {
 }
 // 項目に対応するColを取得・返還する
 function getColCommon(itemName) {
-    if (___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].colArray.length == 0) {
+    if (___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].colArray.length === 0) {
         setCol(___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].colArray);
     }
     if (0 < ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].colArray.indexOf(itemName)) {
         return ___WEBPACK_IMPORTED_MODULE_2__["グローバル変数"].colArray.indexOf(itemName);
     }
 }
-// function findRow(sheet, val, col) {
-//   var dat = sheet.getDataRange().getValues(); //受け取ったシートのデータを二次元配列に取得
-//   for (var i = 1; i < dat.length; i++) {
-//     if (dat[i][col - 1] === val) {
-//       return i + 1;
-//     }
-//   }
-//   return 0;
-// }
-// //. パラメータ入力用のダイアログを表示
-// function openGUI() {
-//   var html = HtmlService.createHtmlOutputFromFile('UserProperties');
-//   SpreadsheetApp.getUi().showModalDialog(html, ' ');
-// }
-// var UserProperties = PropertiesService.getUserProperties();
-// function set_UserProperties(spaceId, apiKey, projectId, projectKey) {
-//   UserProperties.setProperties({
-//     spaceId: spaceId,
-//     apiKey: apiKey,
-//     projectId: projectId,
-//     projectKey: projectKey
-//   });
-//   グローバル変数.space_id = spaceId;
-//   グローバル変数.api_key = apiKey;
-//   グローバル変数.project_id = projectId;
-//   グローバル変数.project_key = projectKey;
-//   グローバル変数.url1 =
-//     'https://' +
-//     グローバル変数.space_id +
-//     '.backlog.com/api/v2/issues?apiKey=' +
-//     グローバル変数.api_key +
-//     '&projectId[]=' +
-//     グローバル変数.project_id;
-//   FromBacklog();
-// }
-// function get_UserProperties() {
-//   var spaceId = UserProperties.getProperty('spaceId');
-//   var apiKey = UserProperties.getProperty('apiKey');
-//   var projectId = UserProperties.getProperty('projectId');
-//   var projectKey = UserProperties.getProperty('projectKey');
-//   UserProperties.setProperties({
-//     spaceId: spaceId,
-//     apiKey: apiKey,
-//     projectId: projectId,
-//     projectKey: projectKey
-//   });
-//   // UserPropertiesのまま渡す方法がわからず ★TODO★
-//   var data = { UserProperties: [spaceId, apiKey, projectId, projectKey] };
-//   return data;
-// }
 
 
 /***/ }),
